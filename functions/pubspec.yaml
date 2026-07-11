@@ -1,0 +1,12 @@
+name: fashion_backend_functions
+description: Genkit Dart & Firebase Functions backend for fashion-app-demo
+environment:
+  sdk: '>=3.12.0 <4.0.0'
+
+dependencies:
+  firebase_functions: ^0.6.0
+  genkit: ^0.14.1
+  genkit_google_genai: ^0.2.9
+  google_generative_ai: ^0.4.0
+  yaml: ^3.1.2
+  crypto: ^3.0.3
