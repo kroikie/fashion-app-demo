@@ -308,7 +308,7 @@ By using **Firebase Callable Functions** (`onCallGenkit` or `onCall`), Firebase 
 
 > **Important Naming Convention:** Firebase Functions converts camelCase definitions into dashed/kebab-case endpoint names (e.g., `fittingRoom` -> `fitting-room`, `stylistFlow` -> `stylist-flow`). Ensure the Flutter client references the dashed name when calling `httpsCallable(...)`.
 
-**`functions/lib/main.dart`:**
+**`functions/bin/server.dart`:**
 ```dart
 import 'package:firebase_functions/firebase_functions.dart';
 import 'package:genkit/genkit.dart';

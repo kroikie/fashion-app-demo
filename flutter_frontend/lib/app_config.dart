@@ -1,5 +1,11 @@
 class AppConfig {
-  // Backend URL.
+  // Whether to use Firebase local emulators when running locally.
+  static const bool useEmulators = bool.fromEnvironment(
+    'USE_EMULATORS',
+    defaultValue: true,
+  );
+
+  // Legacy ADK Backend URL.
   //
   // Default is a same-origin relative path: the Go backend serves this Flutter
   // build at `/`, so calls to `/api/...` hit the API on the same host and port.

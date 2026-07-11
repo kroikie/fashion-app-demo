@@ -1,5 +1,9 @@
 import 'dart:ui'; // Import for PointerDeviceKind
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fashion_app/app_config.dart';
 import 'package:fashion_app/core_app/ui/screens/welcome/welcome_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -7,9 +11,9 @@ import 'package:fashion_app/firebase_options.dart';
 
 import 'package:provider/provider.dart';
 import 'package:fashion_app/workshop_tasks/step_1_try_it_on/providers/try_it_on_provider.dart';
-import 'package:fashion_app/workshop_tasks/step_1_try_it_on/services/adk_fitting_room_service.dart';
+import 'package:fashion_app/workshop_tasks/step_1_try_it_on/services/cloud_functions_fitting_room_service.dart';
 import 'package:fashion_app/workshop_tasks/step_2_style_me/providers/styling_provider.dart';
-import 'package:fashion_app/workshop_tasks/step_2_style_me/services/adk_styling_service.dart';
+import 'package:fashion_app/workshop_tasks/step_2_style_me/services/cloud_functions_styling_service.dart';
 import 'package:fashion_app/core_app/providers/cart_provider.dart';
 import 'package:fashion_app/core_app/ui/design_library/theme.dart';
 
@@ -18,6 +22,24 @@ import 'package:fashion_app/core_app/ui/design_library/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  if (kDebugMode && AppConfig.useEmulators) {
+    try {
+      await FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
+      FirebaseFunctions.instance.useFunctionsEmulator('127.0.0.1', 5001);
+    } catch (e) {
+      debugPrint('Warning: Could not connect to Firebase emulators: $e');
+    }
+  }
+
+  try {
+    if (FirebaseAuth.instance.currentUser == null) {
+      await FirebaseAuth.instance.signInAnonymously();
+    }
+  } catch (e) {
+    debugPrint('Warning: Anonymous sign-in failed: $e');
+  }
+
   runApp(const MyApp());
 }
 
@@ -29,10 +51,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => TryItOnProvider(aiService: AdkFittingRoomService()),
+          create: (_) => TryItOnProvider(
+            aiService: CloudFunctionsFittingRoomService(),
+          ),
         ),
         ChangeNotifierProvider(
-          create: (_) => StylingProvider(stylingService: AdkStylingService()),
+          create: (_) => StylingProvider(
+            stylingService: CloudFunctionsStylingService(),
+          ),
         ),
         ChangeNotifierProvider(create: (_) => CartProvider()),
       ],

@@ -21,9 +21,15 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return android;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for android - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -47,28 +53,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB08eGD_fx5DZnITalKhOH9LLtJKGMDHqw',
-    appId: '1:914235183282:web:d6d8dcff800752282879ab',
-    messagingSenderId: '914235183282',
-    projectId: 'yenkhanh-flutter',
-    authDomain: 'yenkhanh-flutter.firebaseapp.com',
-    storageBucket: 'yenkhanh-flutter.firebasestorage.app',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCXcQK_BO2Sk98-uReCcsuXyDFVOywkiD4',
-    appId: '1:914235183282:android:e2045ba5533634ed2879ab',
-    messagingSenderId: '914235183282',
-    projectId: 'yenkhanh-flutter',
-    storageBucket: 'yenkhanh-flutter.firebasestorage.app',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCvZ0_4-17-2-5ndic25SrBjZ0Boh4mOME',
-    appId: '1:914235183282:ios:9b9fe4ac138d7d622879ab',
-    messagingSenderId: '914235183282',
-    projectId: 'yenkhanh-flutter',
-    storageBucket: 'yenkhanh-flutter.firebasestorage.app',
-    iosBundleId: 'com.example.fashionApp',
+    apiKey: 'AIzaSyB_D1GIew6Un32k3c4w14AdHT1mn6VN-dI',
+    appId: '1:213059467821:web:a2979dba4fe660068696a4',
+    messagingSenderId: '213059467821',
+    projectId: 'flutter-firebase-fashion',
+    authDomain: 'flutter-firebase-fashion.firebaseapp.com',
+    storageBucket: 'flutter-firebase-fashion.firebasestorage.app',
+    measurementId: 'G-TEW3YJZHJ4',
   );
 }

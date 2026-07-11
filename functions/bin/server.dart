@@ -1,7 +1,7 @@
 import 'package:firebase_functions/firebase_functions.dart';
 import 'package:firebase_admin_sdk/firebase_admin_sdk.dart';
-import 'flows/fitting_room_flow.dart';
-import 'flows/stylist_flow.dart';
+import 'package:fashion_backend_functions/flows/fitting_room_flow.dart';
+import 'package:fashion_backend_functions/flows/stylist_flow.dart';
 
 void main() {
   FirebaseApp.initializeApp();
