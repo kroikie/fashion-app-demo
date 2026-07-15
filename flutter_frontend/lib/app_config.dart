@@ -1,9 +1,4 @@
 class AppConfig {
-  // Whether to use Firebase local emulators when running locally.
-  static const bool useEmulators = bool.fromEnvironment(
-    'USE_EMULATORS',
-    defaultValue: true,
-  );
 
   // Legacy ADK Backend URL.
   //

@@ -1,9 +1,6 @@
 import 'dart:ui'; // Import for PointerDeviceKind
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fashion_app/app_config.dart';
 import 'package:fashion_app/core_app/ui/screens/welcome/welcome_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -23,14 +20,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  if (kDebugMode && AppConfig.useEmulators) {
-    try {
-      await FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
-      FirebaseFunctions.instance.useFunctionsEmulator('127.0.0.1', 5001);
-    } catch (e) {
-      debugPrint('Warning: Could not connect to Firebase emulators: $e');
-    }
-  }
 
   try {
     if (FirebaseAuth.instance.currentUser == null) {
