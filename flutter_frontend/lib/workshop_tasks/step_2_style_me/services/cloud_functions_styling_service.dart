@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fashion_app/app_config.dart';
 import 'package:fashion_app/core_app/models/product.dart';
 import 'package:fashion_app/workshop_tasks/step_2_style_me/models/outfit.dart';
 import 'package:fashion_app/workshop_tasks/step_2_style_me/models/style_request.dart';
@@ -68,8 +69,8 @@ class CloudFunctionsStylingService implements StylingService {
       await _ensureAuthenticated();
       _sessionId ??= 'session_${DateTime.now().millisecondsSinceEpoch}';
 
-      final callable = _functions.httpsCallable(
-        'stylist',
+      final callable = _functions.httpsCallableFromUrl(
+        AppConfig.stylistEndpoint,
         options: HttpsCallableOptions(timeout: const Duration(seconds: 180)),
       );
 
@@ -104,8 +105,8 @@ class CloudFunctionsStylingService implements StylingService {
       await _ensureAuthenticated();
       _sessionId ??= 'session_${DateTime.now().millisecondsSinceEpoch}';
 
-      final callable = _functions.httpsCallable(
-        'stylist',
+      final callable = _functions.httpsCallableFromUrl(
+        AppConfig.stylistEndpoint,
         options: HttpsCallableOptions(timeout: const Duration(seconds: 180)),
       );
 

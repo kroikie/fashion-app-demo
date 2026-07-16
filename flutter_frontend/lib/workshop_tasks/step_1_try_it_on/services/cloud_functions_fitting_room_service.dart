@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fashion_app/app_config.dart';
 import 'package:fashion_app/workshop_tasks/step_1_try_it_on/services/try_it_on_service.dart';
 
 class CloudFunctionsFittingRoomService implements TryItOnService {
@@ -34,8 +35,8 @@ class CloudFunctionsFittingRoomService implements TryItOnService {
     try {
       await _ensureAuthenticated();
 
-      final callable = _functions.httpsCallable(
-        'fitting-room',
+      final callable = _functions.httpsCallableFromUrl(
+        AppConfig.fittingRoomEndpoint,
         options: HttpsCallableOptions(timeout: const Duration(seconds: 120)),
       );
 
