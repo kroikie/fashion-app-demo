@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fashion_app/core_app/ui/screens/welcome/welcome_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:fashion_app/firebase_options.dart';
 
 import 'package:provider/provider.dart';
@@ -20,10 +21,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-
   try {
     if (FirebaseAuth.instance.currentUser == null) {
       await FirebaseAuth.instance.signInAnonymously();
+    } else {
+      // force new ID token for workshop
+      await FirebaseAuth.instance.currentUser!.getIdToken(true);
     }
   } catch (e) {
     debugPrint('Warning: Anonymous sign-in failed: $e');
