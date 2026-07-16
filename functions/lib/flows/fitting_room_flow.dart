@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:firebase_admin_sdk/firebase_admin_sdk.dart';
 import 'package:google_cloud_storage/google_cloud_storage.dart' show ObjectMetadata;
@@ -14,7 +13,7 @@ Future<String> saveToStorage(String base64Str, String folderPath) async {
   final bytes = base64Decode(base64Str);
   final uuidStr = DateTime.now().millisecondsSinceEpoch.toString();
   final objectName = '$folderPath/$uuidStr.png';
-  final bucketName = Platform.environment['GCS_BUCKET'] ?? 'flutter-firebase-fashion.firebasestorage.app';
+  final bucketName = gcsBucket.value();
   
   final app = FirebaseApp.instance;
   final storage = app.storage();

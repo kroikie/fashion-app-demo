@@ -11,6 +11,7 @@ import 'package:genkit_google_genai/genkit_google_genai.dart';
 import '../ai.dart';
 
 final geminiApiKey = defineString('GEMINI_API_KEY');
+final gcsBucket = defineString('GCS_BUCKET');
 
 int stableSeed(String s) {
   final bytes = utf8.encode(s);
@@ -242,9 +243,7 @@ final fittingTool = ai.defineTool(
       outBytes = base64Decode(urlStr);
     }
 
-    final storageBucket =
-        Platform.environment['GCS_BUCKET'] ??
-        'flutter-firebase-fashion.firebasestorage.app';
+    final storageBucket = gcsBucket.value();
     final uuid = DateTime.now().millisecondsSinceEpoch.toString();
     final objectName = 'generated-fittings/fitting_$uuid.png';
 
