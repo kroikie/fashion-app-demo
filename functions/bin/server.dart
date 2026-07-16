@@ -10,7 +10,7 @@ void main() {
     // 1. Virtual Try-On callable endpoint (Dasherized name matches 'fitting-room')
     firebase.https.onCall(
       name: 'fittingRoom',
-      options: const CallableOptions(cors: Option(['*'])),
+      options: const CallableOptions(cors: Option(['*']), invoker: Invoker.public()),
       (request, response) async {
         final auth = request.auth;
         if (auth == null) {
@@ -32,7 +32,7 @@ void main() {
     // 2. Personal Stylist callable endpoint (Dasherized name matches 'stylist')
     firebase.https.onCall(
       name: 'stylist',
-      options: const CallableOptions(cors: Option(['*'])),
+      options: const CallableOptions(cors: Option(['*']), invoker: Invoker.public()),
       (request, response) async {
         final auth = request.auth;
         if (auth == null) {
