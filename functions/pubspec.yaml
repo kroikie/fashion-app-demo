@@ -4,6 +4,8 @@ environment:
   sdk: '>=3.11.0 <4.0.0'
 
 dependencies:
+  args: ^2.7.0
+  firebase_admin_sdk: ^0.5.3
   firebase_functions: ^0.6.0
   genkit: ^0.14.1
   genkit_google_genai: ^0.2.9

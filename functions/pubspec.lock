@@ -34,7 +34,7 @@ packages:
     source: hosted
     version: "4.13.2"
   args:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: args
       sha256: d0481093c50b1da8910eb0bb301626d4d8eb7284aa739614d2b394ee09e3ea04
@@ -218,7 +218,7 @@ packages:
     source: hosted
     version: "7.0.1"
   firebase_admin_sdk:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: firebase_admin_sdk
       sha256: b17f129ecb0ee2c0523f7441f6f40bfbc8ffcf9fb58fe9e4b0dbe1255969ba4d
