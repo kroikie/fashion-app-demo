@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fashion_app/core_app/ui/design_library/app_styles.dart';
 import 'package:fashion_app/core_app/ui/screens/main_screen.dart';
-import 'package:fashion_app/core_app/ui/design_library/components/buttons/primary_button.dart';
 import 'package:fashion_app/core_app/ui/design_library/components/buttons/secondary_button.dart';
 
 class WelcomeContent extends StatelessWidget {
@@ -102,19 +101,6 @@ class WelcomeContent extends StatelessWidget {
             ),
             child: Column(
               children: [
-                PrimaryButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MainScreen(),
-                      ),
-                    );
-                  },
-                  text: 'Create Account',
-                  height: 48,
-                ),
-                const SizedBox(height: 12),
                 SecondaryButton(
                   onPressed: () {
                     Navigator.pushReplacement(
